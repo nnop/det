@@ -6,5 +6,6 @@ models/
 jobs/
 results/
 splits/
+data
 data/
 snapshots/
