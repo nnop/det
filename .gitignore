@@ -1,0 +1,10 @@
+*.pyc
+*.png
+helper/
+lmdb/
+models/
+jobs/
+results/
+splits/
+data/
+snapshots/
