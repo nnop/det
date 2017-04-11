@@ -84,6 +84,12 @@ remove_old_models = True
 train_data = "lmdb/train_lmdb"
 # The database file for testing data. Created by data/VOC0712/create_data.sh
 test_data = "lmdb/test_lmdb"
+# Stores the test image names and sizes. Created by data/VOC0712/create_list.sh
+name_size_file = "helper/test_name_size.txt"
+with open('splits/test.txt') as f:
+    lines = f.readlines()
+num_test_image = len(lines)
+
 # Specify the batch sampler.
 resize_width = 300
 resize_height = 300
@@ -255,10 +261,8 @@ snapshot_prefix = "{}/{}".format(snapshot_dir, model_name)
 # job script path.
 job_file = "{}/run_{}.sh".format(job_dir, model_name)
 
-# Stores the test image names and sizes. Created by data/VOC0712/create_list.sh
-name_size_file = "helper/test_name_size.txt"
 # The pretrained model. We use the Fully convolutional reduced (atrous) VGGNet.
-pretrain_model = "models/VGG_VOC0712_SSD_300x300_iter_120000.caffemodel"
+pretrain_model = "models/VGG_ILSVRC_16_layers_fc_reduced.caffemodel"
 # Stores LabelMapItem.
 label_map_file = "helper/labelmap.prototxt"
 
@@ -359,9 +363,6 @@ elif normalization_mode == P.Loss.FULL:
   base_lr *= 2000.
 
 # Evaluate on whole test set.
-with open('splits/test.txt') as f:
-    lines = f.readlines()
-num_test_image = len(lines)
 test_batch_size = 8
 # Ideally test_batch_size should be divisible by num_test_image,
 # otherwise mAP will be slightly off the true value.
@@ -571,4 +572,4 @@ os.chmod(job_file, stat.S_IRWXU)
 if run_soon:
   subprocess.call(job_file, shell=True)
 
-print('generate done.')
+print('generate to {}.'.format(job_dir))

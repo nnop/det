@@ -12,37 +12,12 @@ item.display_name = 'null'
 
 item = labmap.item.add()
 item.label = 1
-item.name = 'listen'
-item.display_name = 'listen'
-
-item = labmap.item.add()
-item.label = 2
-item.name = 'read'
-item.display_name = 'read'
-
-item = labmap.item.add()
-item.label = 3
-item.name = 'write'
-item.display_name = 'write'
-
-item = labmap.item.add()
-item.label = 4
-item.name = 'handup'
-item.display_name = 'handup'
-
-item = labmap.item.add()
-item.label = 5
-item.name = 'twist'
-item.display_name = 'twist'
-
-item = labmap.item.add()
-item.label = 6
-item.name = 'play'
-item.display_name = 'play'
+item.name = 'head'
+item.display_name = 'head'
 
 make_if_not_exist('helper')
 
 with open('helper/labelmap.prototxt', 'w') as f:
     f.write(str(labmap))
 
-print 'labelmap save to "helper/labelmap.prototxt".'
+print 'labelmap save to helper/labelmap.prototxt.'
